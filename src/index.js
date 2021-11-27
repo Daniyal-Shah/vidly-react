@@ -12,7 +12,6 @@ import Pagination from './services/components/pagination';
 ReactDOM.render(
   <React.StrictMode>
     <Movie />
-    <Pagination />    
   </React.StrictMode>,
   document.getElementById('root')
 );
