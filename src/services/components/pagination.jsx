@@ -9,7 +9,7 @@ const Pagination = (props) => {
 
   const pages = _.range(1, pagesCount + 1);
 
-  console.log(`current : ${currentPage}`);
+  // console.log(`current : ${currentPage}`);
   return (
     <div>
       <nav aria-label="Page navigation example">

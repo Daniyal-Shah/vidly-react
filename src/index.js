@@ -11,7 +11,10 @@ import Pagination from './services/components/pagination';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Movie />
+    <div className="container p-2 my-4" >
+      <Movie />
+    </div>
+
   </React.StrictMode>,
   document.getElementById('root')
 );
