@@ -7,7 +7,7 @@ import Pagination from "./pagination";
 class Movie extends Component {
   state = {
     movies: getMovies(),
-    pageSize: 4,
+    pageSize: 6,
     currentPage: 1,
   };
 
@@ -25,6 +25,7 @@ class Movie extends Component {
   handlePageChange = (page) => {
     this.setState({ currentPage: page });
   };
+
   render() {
     const { length: count } = this.state.movies;
     const { pageSize, currentPage, movies: allMovies } = this.state;
