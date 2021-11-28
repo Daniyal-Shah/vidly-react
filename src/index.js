@@ -5,22 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.css';
-import Movie from './services/components/movies';
-import Pagination from './services/components/pagination';
-import Menu from './services/components/menu';
+import Movie from './components/movies';
+
+
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <div className="container p-2 my-4" >
-      <div class="row">
-        <div className="col">
-          <Movie />
-        </div>
-      </div>
-
-    </div>
-
+          <div>
+          <Movie/>
+          </div>
   </React.StrictMode>,
   document.getElementById('root')
 );
