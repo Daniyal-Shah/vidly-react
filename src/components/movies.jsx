@@ -1,16 +1,28 @@
 import React, { Component } from "react";
-import Like from "./common/like";
 import { paginate } from "../../src/utils/paginate";
 import { getMovies } from "../services/fakeMovieService";
 import Pagination from "./common/pagination";
 import ListGroup from "./common/listGroup";
+import { getGenres, genres } from "../services/fakeGenreService";
+import MoviesTable from "./moviesTable";
 
-class Movie extends Component {
+class Movies extends Component {
   state = {
-    movies: getMovies(),
-    pageSize: 6,
+    movies: [],
+    pageSize: 4,
+    genres: [],
     currentPage: 1,
   };
+
+  componentDidMount() {
+    const allGenre = { name: "All genres" };
+    this.setState({ selectedGenre: allGenre });
+    const genres = [allGenre, ...getGenres()];
+    this.setState({ movies: getMovies(), genres });
+
+    // console.log(this.state.genres);
+    // console.log(this.state.movies);
+  }
 
   handleDelete = (movie) => {
     const movies = this.state.movies.filter((m) => m._id !== movie._id);
@@ -27,59 +39,46 @@ class Movie extends Component {
     this.setState({ currentPage: page });
   };
 
+  handleGenreSelect = (genre) => {
+    this.setState({ selectedGenre: genre, currentPage: 1 });
+  };
   render() {
     const { length: count } = this.state.movies;
-    const { pageSize, currentPage, movies: allMovies } = this.state;
+    const {
+      pageSize,
+      currentPage,
+      movies: allMovies,
+      genres: allGenres,
+      selectedGenre,
+    } = this.state;
 
-    const movies = paginate(allMovies, currentPage, pageSize);
+    const filtered =
+      selectedGenre && selectedGenre._id
+        ? allMovies.filter((m) => m.genre._id === selectedGenre._id)
+        : allMovies;
+    const movies = paginate(filtered, currentPage, pageSize);
 
     if (count === 0) return <p>There are no movies in the database</p>;
     else
       return (
         <div className="container-fluid p-5">
           <div className="row">
-            <div className="col-2 p-3 me-3">
-              <ListGroup />
+            <div className="col-3 p-3 ms-3">
+              <ListGroup
+                items={allGenres}
+                selectedItem={this.state.selectedGenre}
+                onItemSelect={this.handleGenreSelect}
+              />
             </div>
             <div className="col ">
-              <p>Showing {movies.length} movies in the database.</p>
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Title</th>
-                    <th scope="col">Genre</th>
-                    <th scope="col">Stock</th>
-                    <th scope="col">Rate</th>
-                    <th scope="col"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {movies.map((movie) => (
-                    <tr key={movie._id}>
-                      <th scope="row">{movie.title}</th>
-                      <td>{movie.genre.name}</td>
-                      <td>{movie.numberInStock}</td>
-                      <td>{movie.dailyRentalRate}</td>
-                      <td>
-                        <Like
-                          liked={movie.liked}
-                          onClick={() => this.handleLike(movie)}
-                        />
-                      </td>
-                      <td>
-                        <button
-                          className="btn btn-danger btn-sm"
-                          onClick={() => this.handleDelete(movie)}
-                        >
-                          Delete
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              <p>Showing {filtered.length} movies in the database.</p>
+              <MoviesTable
+                movies={movies}
+                onLike={this.handleLike}
+                onDelete={this.handleDelete}
+              />
               <Pagination
-                itemsCount={count}
+                itemsCount={filtered.length}
                 pageSize={this.state.pageSize}
                 onPageChange={this.handlePageChange}
                 currentPage={this.state.currentPage}
@@ -90,4 +89,4 @@ class Movie extends Component {
       );
   }
 }
-export default Movie;
+export default Movies;

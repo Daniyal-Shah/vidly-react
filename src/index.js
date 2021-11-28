@@ -1,21 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+// import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.css';
-import Movie from './components/movies';
+import Movies from './components/movies';
 
 
 
 
 ReactDOM.render(
-  <React.StrictMode>
-          <div>
-          <Movie/>
+  <div className="" >
+          <div >
+          <Movies/>
           </div>
-  </React.StrictMode>,
+  </div>,
   document.getElementById('root')
 );
 
