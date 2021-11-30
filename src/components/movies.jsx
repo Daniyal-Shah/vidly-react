@@ -92,6 +92,7 @@ class Movies extends Component {
                 onDelete={this.handleDelete}
                 onSort={this.handleSort}
               />
+
               <Pagination
                 itemsCount={totalCount}
                 pageSize={this.state.pageSize}
