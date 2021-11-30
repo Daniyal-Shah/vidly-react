@@ -1,0 +1,6 @@
+            <th scope="row">{movie.title}</th>
+            <td>{movie.genre.name}</td>
+            <td>{movie.numberInStock}</td>
+            <td>{movie.dailyRentalRate}</td>
+            <td></td>
+            <td></td>
