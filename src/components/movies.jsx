@@ -3,7 +3,7 @@ import { paginate } from "../../src/utils/paginate";
 import { getMovies } from "../services/fakeMovieService";
 import Pagination from "./common/pagination";
 import ListGroup from "./common/listGroup";
-import { getGenres, genres } from "../services/fakeGenreService";
+import { getGenres } from "../services/fakeGenreService";
 import MoviesTable from "./moviesTable";
 import _ from "lodash";
 
@@ -45,19 +45,7 @@ class Movies extends Component {
     this.setState({ selectedGenre: genre, currentPage: 1 });
   };
 
-  handleSort = (path) => {
-    const sortColumn = { ...this.state.sortColumn };
-
-    // console.log("oursort : ", sortColumn);
-    if (sortColumn.path === path) {
-      sortColumn.order = sortColumn.order === "asc" ? "desc" : "asc";
-      console.log(sortColumn);
-    } else {
-      sortColumn.path = path;
-      sortColumn.order = "asc";
-      console.log(sortColumn);
-    }
-
+  handleSort = (sortColumn) => {
     this.setState({ sortColumn });
   };
   render() {
@@ -96,6 +84,7 @@ class Movies extends Component {
               <MoviesTable
                 movies={movies}
                 onLike={this.handleLike}
+                sortColumn={sortColumn}
                 onDelete={this.handleDelete}
                 onSort={this.handleSort}
               />
