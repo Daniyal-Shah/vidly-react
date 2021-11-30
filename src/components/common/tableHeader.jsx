@@ -29,6 +29,8 @@ class TableHeader extends React.Component {
   };
 
   render() {
+    // console.log("columns");
+    // console.log(this.props.columns);
     return (
       <thead>
         <tr>

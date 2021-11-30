@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Like from "./common/like";
-import TableBody from "./common/tableBody";
-import TableHeader from "./common/tableHeader";
+import Table from "./common/table";
+
 class MoviesTable extends Component {
   columns = [
     { path: "title", label: "Title" },
@@ -30,21 +30,12 @@ class MoviesTable extends Component {
   render() {
     const { movies, onLike, onDelete, sortColumn, onSort } = this.props;
     return (
-      <React.Fragment>
-        <table className="table">
-          <TableHeader
-            columns={this.columns}
-            sortColumn={sortColumn}
-            onSort={onSort}
-          />
-          <TableBody
-            data={movies}
-            onLike={onLike}
-            onDelete={onDelete}
-            columns={this.columns}
-          />
-        </table>
-      </React.Fragment>
+      <Table
+        columns={this.columns}
+        onSort={onSort}
+        data={movies}
+        sortColumn={sortColumn}
+      />
     );
   }
 }
