@@ -6,12 +6,7 @@ const Table = (columns, data, onSort, sortColumn) => {
   return (
     <table className="table">
       <TableHeader columns={columns} sortColumn={sortColumn} onSort={onSort} />
-      <TableBody
-        columns={columns}
-        data={data}
-        // onLike={onLike}
-        // onDelete={onDelete}
-      />
+      <TableBody columns={columns} data={data} />
     </table>
   );
 };

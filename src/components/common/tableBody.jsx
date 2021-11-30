@@ -13,9 +13,7 @@ class TableBody extends React.Component {
   };
   render() {
     const { data, columns } = this.props;
-    // console.log("Data");
-    // console.log(data);
-    // console.log("Columns", columns);
+
     return (
       <tbody>
         {data.map((item) => (
