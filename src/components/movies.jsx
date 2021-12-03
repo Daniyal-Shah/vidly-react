@@ -6,6 +6,8 @@ import ListGroup from "./common/listGroup";
 import { getGenres } from "../services/fakeGenreService";
 import MoviesTable from "./moviesTable";
 import _ from "lodash";
+import NavBar from "./common/navBar";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 class Movies extends Component {
   state = {
@@ -74,7 +76,10 @@ class Movies extends Component {
     if (count === 0) return <p>There are no movies in the database</p>;
     else
       return (
-        <div className="container-fluid p-5">
+        <div className="container-fluid py-5 pt-0">
+          {/* <div className="row mb-4">
+            <NavBar />
+          </div> */}
           <div className="row">
             <div className="col-3 p-3 ms-3">
               <ListGroup

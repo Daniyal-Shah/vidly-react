@@ -1,11 +1,30 @@
 import './App.css';
+import Movies from './components/movies';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Customers from './components/customers';
+import Rentals from './components/rentals';
+import NavBar from './components/common/navBar';
+import NotFound from './components/notFound';
+import MoviesForm from './components/moviesForm';
 
 function App() {
   return (
-    <main className="container">
-      <h1>Hello React</h1>
-      <p>This is a sample </p>
-    </main>
+    <div className="container">
+        <div className="row mb-4 " >
+          <NavBar />
+        </div>
+        <Routes>
+          <Route path="/" element={<Navigate replace to="/movies" />}  />
+          <Route path="/movies" element={<Movies/>} />
+          <Route path="/movies/:id" element={<MoviesForm/>} />         
+          <Route path="/customers" element={<Customers/>} />
+          <Route path="/rentals" element={<Rentals/>} />         
+          <Route path="/not-found" element={<NotFound/>} />         
+          <Route path="*" element={<Navigate replace to="/not-found" />}/> 
+        </Routes>
+    </div>
+
+
   );
 }
 
