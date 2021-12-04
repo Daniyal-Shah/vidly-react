@@ -44,6 +44,14 @@ const NavBar = (params) => {
           >
             Rentals
           </NavLink>
+          <NavLink
+            to="/login"
+            className={({ isActive }) =>
+              "nav-item nav-link" + (isActive ? " active" : "")
+            }
+          >
+            Login
+          </NavLink>
         </div>
       </div>
     </nav>
