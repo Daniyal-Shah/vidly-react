@@ -10,12 +10,13 @@ class LoginForm extends React.Component {
     e.preventDefault();
     console.log("form submitted");
   };
-  handleChange = (e) => {
+  handleChange = ({ currentTarget: input }) => {
     const account = { ...this.state.account };
-    account.username = e.currentTarget.value;
+    account[input.name] = input.value;
     this.setState({ account });
   };
   render() {
+    const { account } = this.state;
     return (
       <div className="container">
         <h1 className="mb-2">Login</h1>
@@ -26,15 +27,23 @@ class LoginForm extends React.Component {
               autoFocus
               type="text"
               id="usernameField"
+              name="username"
               ref={this.username}
-              value={this.state.account.username}
+              value={account.username}
               onChange={this.handleChange}
               className="form-control"
             />
           </div>
           <div className="form-group mb-2">
             <label htmlFor="passwordField">Password</label>
-            <input type="text" id="passwordField" className="form-control" />
+            <input
+              type="text"
+              name="password"
+              id="passwordField"
+              value={account.password}
+              className="form-control"
+              onChange={this.handleChange}
+            />
           </div>
           <div className="form-group mb-2">
             <button className="btn btn-primary">Login</button>
