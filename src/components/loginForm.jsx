@@ -38,7 +38,13 @@ class LoginForm extends React.Component {
     console.log("form submitted");
   };
 
-  validateProperty = (input) => {};
+  validateProperty = ({ name, value }) => {
+    const obj = { [name]: value };
+    const schema = { [name]: this.schema[name] };
+    const { error } = Joi.validate(obj, schema);
+
+    return error ? error.details[0].message : null;
+  };
 
   handleChange = ({ currentTarget: input }) => {
     const errors = { ...this.state.errors };
