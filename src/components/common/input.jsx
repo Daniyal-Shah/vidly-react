@@ -11,7 +11,7 @@ const Input = ({ name, label, value, onChange, error }) => {
         onChange={onChange}
         className="form-control"
       />
-      {error[name] && (
+      {error && (
         <div class="alert alert-danger" role="alert">
           {name} is required
         </div>

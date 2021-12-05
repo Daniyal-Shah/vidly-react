@@ -1,5 +1,7 @@
 import React from "react";
+import Joi from "joi-browser";
 import Input from "./common/input";
+import { forEach } from "lodash";
 
 class LoginForm extends React.Component {
   state = {
@@ -7,33 +9,47 @@ class LoginForm extends React.Component {
     errors: {},
   };
 
-  validate = () => {
-    const errors = {};
-    const { account } = this.state;
+  schema = {
+    username: Joi.string().required().label("Username"),
+    password: Joi.string().required().label("Password"),
+  };
 
-    if (account.username.trim() === "") {
-      errors.username = "Username is required";
-    }
-    if (account.password.trim() === "") {
-      errors.password = "Password is required";
-    }
-    return Object.keys(errors).length === 0 ? null : errors;
+  validate = () => {
+    const options = { abortEarly: false };
+    const { error } = Joi.validate(this.state.errors, this.schema, options);
+
+    if (!error) return null;
+
+    const errors = {};
+
+    error.details.forEach((item, index) => {
+      errors[item.path[0]] = item.message;
+    });
+    return errors;
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
 
     const errors = this.validate();
-    console.log(errors);
-    this.setState({ errors });
+    this.setState({ errors: errors || {} });
 
     if (errors) return;
     console.log("form submitted");
   };
+
+  validateProperty = (input) => {};
+
   handleChange = ({ currentTarget: input }) => {
+    const errors = { ...this.state.errors };
+    const errorMessage = this.validateProperty(input);
+    if (errorMessage) errors[input.name] = errorMessage;
+    else delete errors[input.name];
+
     const account = { ...this.state.account };
     account[input.name] = input.value;
-    this.setState({ account });
+
+    this.setState({ account, errors });
   };
   render() {
     const { account, errors } = this.state;
@@ -44,16 +60,16 @@ class LoginForm extends React.Component {
           <Input
             name="username"
             value={account.username}
-            label="username"
+            label="Username"
             onChange={this.handleChange}
-            error={errors}
+            error={errors.username}
           />
           <Input
             name="password"
             value={account.password}
-            label="password"
+            label="Password"
             onChange={this.handleChange}
-            error={errors}
+            error={errors.password}
           />
 
           <div className="form-group mb-2">
