@@ -74,15 +74,19 @@ class MovieForm extends Form {
 
   render() {
     return (
-      <div>
-        <h1>Movie Form</h1>
-        <form onSubmit={this.handleSubmit}>
-          {this.renderInput("title", "Title")}
-          {this.renderSelect("genreId", "Genre", this.state.genres)}
-          {this.renderInput("numberInStock", "Number in Stock", "number")}
-          {this.renderInput("dailyRentalRate", "Rate")}
-          {this.renderButton("Save")}
-        </form>
+      <div className="container">
+        <div className="row d-flex justify-content-center ">
+          <div className="col col-sm-12 col-md-8 col-lg-5">
+            <h2 className="mb-5">Movie Form</h2>
+            <form onSubmit={this.handleSubmit}>
+              {this.renderInput("title", "Title")}
+              {this.renderSelect("genreId", "Genre", this.state.genres)}
+              {this.renderInput("numberInStock", "Number in Stock", "number")}
+              {this.renderInput("dailyRentalRate", "Rate")}
+              {this.renderButton("Save")}
+            </form>
+          </div>
+        </div>
       </div>
     );
   }

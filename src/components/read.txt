@@ -2,10 +2,8 @@
         <div className="row d-flex justify-content-center ">
           <div className="col col-sm-12 col-md-8 col-lg-5">
             <h2 className="mb-5">Register</h2>
-                {this.renderInput("username", "Username")}
-                {this.renderInput("password", "Password", "password")}
-                {this.renderInput("name", "Name")}
-                {this.renderButton("Register")}
+
+
           </div>
         </div>
       </div>
