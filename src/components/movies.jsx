@@ -6,8 +6,7 @@ import ListGroup from "./common/listGroup";
 import { getGenres } from "../services/fakeGenreService";
 import MoviesTable from "./moviesTable";
 import _ from "lodash";
-import NavBar from "./common/navBar";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
 class Movies extends Component {
   state = {
@@ -77,9 +76,6 @@ class Movies extends Component {
     else
       return (
         <div className="container-fluid py-5 pt-0">
-          {/* <div className="row mb-4">
-            <NavBar />
-          </div> */}
           <div className="row">
             <div className="col-3 p-3 ms-3">
               <ListGroup
@@ -89,6 +85,11 @@ class Movies extends Component {
               />
             </div>
             <div className="col ">
+              <NavLink to="/movies/new" className="btn btn-primary mb-2">
+                New movie
+              </NavLink>
+
+              {/* <Outlet /> */}
               <p>Showing {totalCount} movies in the database.</p>
               <MoviesTable
                 movies={movies}

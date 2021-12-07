@@ -1,12 +1,11 @@
 import { useParams } from "react-router";
+import { getGenres } from "../services/fakeGenreService";
+import MovieForm from "./movieForm";
 
 const MoviesForm = () => {
   const { id } = useParams();
-  return (
-    <div className="d-flex justify-content-center">
-      <h1>Movie:{id} </h1>
-    </div>
-  );
+  const genres = getGenres();
+  return <MovieForm paramId={id} />;
 };
 
 export default MoviesForm;

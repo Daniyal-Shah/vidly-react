@@ -21,12 +21,16 @@ class LoginForm extends Form {
   render() {
     return (
       <div className="container">
-        <h1 className="mb-2">Login</h1>
-        <form className="" onSubmit={this.handleSubmit}>
-          {this.renderInput("username", "Username")}
-          {this.renderInput("password", "Password", "password")}
-          <div className="form-group mb-2">{this.renderButton("Login")}</div>
-        </form>
+        <div className="row d-flex justify-content-center ">
+          <div className="col col-sm-12 col-md-8 col-lg-5">
+            <h2 className="mb-5">Login</h2>
+            <form className="my-2" onSubmit={this.handleSubmit}>
+              {this.renderInput("username", "Username")}
+              {this.renderInput("password", "Password", "password")}
+              <div className="form-group ">{this.renderButton("Login")}</div>
+            </form>
+          </div>
+        </div>
       </div>
     );
   }

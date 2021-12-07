@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
 const NavBar = (params) => {
   return (
@@ -51,6 +51,14 @@ const NavBar = (params) => {
             }
           >
             Login
+          </NavLink>
+          <NavLink
+            to="/register"
+            className={({ isActive }) =>
+              "nav-item nav-link" + (isActive ? " active" : "")
+            }
+          >
+            Register
           </NavLink>
         </div>
       </div>
