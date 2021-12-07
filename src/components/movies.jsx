@@ -85,9 +85,14 @@ class Movies extends Component {
               />
             </div>
             <div className="col ">
-              <NavLink to="/movies/new" className="btn btn-primary mb-2">
-                New movie
-              </NavLink>
+              <div className="row">
+                <NavLink
+                  to="/movies/new"
+                  className="btn btn-outline-primary  mb-2"
+                >
+                  Add new movie
+                </NavLink>
+              </div>
 
               <p>Showing {totalCount} movies in the database.</p>
               <MoviesTable
