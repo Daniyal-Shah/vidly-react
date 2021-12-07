@@ -69,6 +69,8 @@ class MovieForm extends Form {
   doSubmit = () => {
     console.log("added");
     saveMovie(this.state.data);
+    // this.props.navigatePage("/movies");
+
     // Navigate("/movies");
   };
 

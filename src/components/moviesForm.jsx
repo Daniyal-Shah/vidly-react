@@ -1,10 +1,15 @@
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import MovieForm from "./movieForm";
 
-const MoviesForm = () => {
+const MoviesForm = (props) => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
-  return <MovieForm paramId={id} />;
+  const navigatePage = (page) => {
+    navigate(page);
+  };
+
+  return <MovieForm paramId={id} naviagte={navigatePage} />;
 };
 
 export default MoviesForm;

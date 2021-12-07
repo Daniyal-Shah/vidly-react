@@ -88,8 +88,7 @@ export function saveMovie(movie) {
     movies.push(movieInDb);
   }
 
-  console.log("updated movies");
-  console.log(movies);
+
   return movieInDb;
 }
 
