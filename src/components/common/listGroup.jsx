@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 const ListGroup = (props) => {
   const { items, onItemSelect, textProperty, valueProperty, selectedItem } =
@@ -9,7 +9,7 @@ const ListGroup = (props) => {
       {items.map((item) => (
         <li
           className={
-            item == selectedItem
+            item === selectedItem
               ? "list-group-item list-group-item-action active"
               : "list-group-item list-group-item-action"
           }

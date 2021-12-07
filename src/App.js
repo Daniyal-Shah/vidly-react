@@ -8,7 +8,6 @@ import NotFound from './components/notFound';
 import MoviesForm from './components/moviesForm';
 import LoginForm from './components/loginForm';
 import RegisterForm from './components/registerForm';
-import MovieForm from './components/movieForm';
 
 function App() {
   return (
@@ -19,7 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigate replace to="/movies" />}  />
           <Route path="/movies" element={<Movies/>} />         
-          <Route path="/movies/:id" element={<MovieForm/>} />
+          <Route path="/movies/:id" element={<MoviesForm/>} />
           <Route path="/customers" element={<Customers/>} />
           <Route path="/rentals" element={<Rentals/>} />       
           <Route path="/login" element={<LoginForm/>} />           

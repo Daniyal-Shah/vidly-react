@@ -48,7 +48,11 @@ class Form extends React.Component {
   };
 
   renderButton = (label) => {
-    return <button className="btn btn-primary">{label}</button>;
+    return (
+      <button disabled={this.validate()} className="btn btn-primary">
+        {label}
+      </button>
+    );
   };
 
   renderInput = (name, label, type = "text") => {
@@ -65,17 +69,20 @@ class Form extends React.Component {
       />
     );
   };
-  renderSelect = (name, label, options) => {
+  renderSelect(name, label, options) {
     const { data, errors } = this.state;
-    <Select
-      name={name}
-      value={data[name]}
-      options={options}
-      label={label}
-      onChange={this.handleChange}
-      error={errors[name]}
-    />;
-  };
+
+    return (
+      <Select
+        name={name}
+        value={data[name]}
+        label={label}
+        options={options}
+        onChange={this.handleChange}
+        error={errors[name]}
+      />
+    );
+  }
 }
 
 export default Form;

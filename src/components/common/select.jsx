@@ -1,7 +1,6 @@
 import React from "react";
-import { useParams } from "react-router";
 
-const Select = ({ name, options, label, error, ...rest }) => {
+const Select = ({ name, label, options, error, ...rest }) => {
   return (
     <div className="form-group">
       <label htmlFor={name}>{label}</label>
