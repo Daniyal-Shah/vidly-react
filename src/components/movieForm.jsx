@@ -55,9 +55,9 @@ class MovieForm extends Form {
     }
   };
 
-  componentDidMount() {
-    this.populateGenres();
-    this.populateMovie(this.props.paramId);
+  async componentDidMount() {
+    await this.populateGenres();
+    await this.populateMovie(this.props.paramId);
   }
 
   mapToViewModel(movie) {
@@ -70,9 +70,9 @@ class MovieForm extends Form {
     };
   }
 
-  doSubmit = () => {
+  doSubmit = async () => {
     console.log("added");
-    saveMovie(this.state.data);
+    await saveMovie(this.state.data);
     // this.props.navigatePage("/movies");
 
     // Navigate("/movies");
