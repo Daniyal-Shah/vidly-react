@@ -72,9 +72,15 @@ class MovieForm extends Form {
 
   doSubmit = async () => {
     console.log("added");
-    await saveMovie(this.state.data);
-    // this.props.navigatePage("/movies");
 
+    try {
+      await saveMovie(this.state.data);
+      toast.success("Movie added sucessfuly!");
+    } catch (error) {
+      toast.error("Something went wrong");
+    }
+
+    // this.props.navigatePage("/movies");
     // Navigate("/movies");
   };
 
