@@ -1,8 +1,9 @@
 import React from "react";
-import Joi from "joi-browser";
+import Joi, { errors } from "joi-browser";
 import Form from "./common/form";
-import { getMovie, saveMovie } from "../services/fakeMovieService";
-import { getGenres } from "../services/fakeGenreService";
+import { getMovie, saveMovie } from "../services/movieService";
+import { getGenres } from "../services/genreService";
+import { toast } from "react-toastify";
 
 class MovieForm extends Form {
   state = {
@@ -12,7 +13,7 @@ class MovieForm extends Form {
       numberInStock: "",
       dailyRentalRate: "",
     },
-    genres: getGenres(),
+    genres: [],
     errors: {},
   };
 
@@ -32,27 +33,30 @@ class MovieForm extends Form {
       .label("Daily Rental Rate"),
   };
 
-  populateGenres = () => {
-    const { data: genres } = getGenres();
+  populateGenres = async () => {
+    const { data: genres } = await getGenres();
     this.setState({ genres });
   };
 
-  populateMovie = (paramId) => {
+  populateMovie = async (paramId) => {
     const movieId = paramId;
     if (movieId === "new") return;
 
-    const movie = getMovie(movieId);
-
-    if (!movie) {
-      console.log("Movie not found");
-      // Navigate("/not-found");
+    try {
+      const { data: movie } = await getMovie(movieId);
+      this.setState({ data: this.mapToViewModel(movie) });
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        toast.error("Movie is not found");
+        // this.props.history.replace("/not-found");
+        console.log("Movie not found");
+        // Navigate("/not-found");
+      }
     }
-
-    this.setState({ data: this.mapToViewModel(movie) });
   };
 
   componentDidMount() {
-    // this.populateGenres();
+    this.populateGenres();
     this.populateMovie(this.props.paramId);
   }
 
