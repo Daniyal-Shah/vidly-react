@@ -30,7 +30,7 @@ class App extends React.Component {
         </div>
         <Routes>
           <Route path="/" element={<Navigate replace to="/movies" />} />
-          <Route path="/movies" element={<Movies />} />
+          <Route path="/movies" element={<Movies user={user} />} />
           <Route path="/movies/:id" element={<MoviesForm />} />
           <Route path="/customers" element={<Customers />} />
           <Route path="/rentals" element={<Rentals />} />
