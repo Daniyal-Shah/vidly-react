@@ -30,8 +30,8 @@ class Movies extends Component {
 
     const { data: movies } = await getMovies();
 
-    console.log("movies in componentDidMount");
-    console.log(movies);
+    // console.log("movies in componentDidMount");
+    // console.log(movies);
 
     this.setState({ movies, genres });
   }

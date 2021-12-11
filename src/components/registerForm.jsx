@@ -1,6 +1,8 @@
 import React from "react";
 import Form from "./common/form";
 import Joi from "joi-browser";
+import * as userService from "../services/userService";
+import { toast } from "react-toastify";
 
 class RegisterForm extends Form {
   state = {
@@ -12,7 +14,17 @@ class RegisterForm extends Form {
     password: Joi.string().required().min(5).label("Password"),
     name: Joi.string().required().label("Name"),
   };
-  doSubmit = () => {
+
+  doSubmit = async () => {
+    try {
+      await userService.register(this.state.data);
+      toast.success("User added sucessfuly!");
+    } catch (error) {
+      const errors = { ...this.state.errors };
+      errors.username = error.response.data;
+      this.setState({ errors });
+      toast.error("Something went wrong");
+    }
     console.log("registration done");
   };
   render() {
@@ -20,11 +32,13 @@ class RegisterForm extends Form {
       <div className="container">
         <div className="row d-flex justify-content-center ">
           <div className="col col-sm-12 col-md-8 col-lg-5">
-            <h2 className="mb-5">Register</h2>
-            {this.renderInput("username", "Username")}
-            {this.renderInput("password", "Password", "password")}
-            {this.renderInput("name", "Name")}
-            {this.renderButton("Register")}
+            <form onSubmit={this.handleSubmit}>
+              <h2 className="mb-5">Register</h2>
+              {this.renderInput("username", "Username")}
+              {this.renderInput("password", "Password", "password")}
+              {this.renderInput("name", "Name")}
+              {this.renderButton("Register")}
+            </form>
           </div>
         </div>
       </div>
