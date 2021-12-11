@@ -12,6 +12,7 @@ import RegisterForm from "./components/registerForm";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import React from "react";
+import Logout from "./components/logout";
 
 class App extends React.Component {
   state = {};
@@ -37,6 +38,7 @@ class App extends React.Component {
           <Route path="/rentals" element={<Rentals />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/register" element={<RegisterForm />} />
+          <Route path="/logout" element={<Logout />} />
           <Route path="/not-found" element={<NotFound />} />
           <Route path="*" element={<Navigate replace to="/not-found" />} />
         </Routes>
