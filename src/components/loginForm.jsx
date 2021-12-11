@@ -20,9 +20,11 @@ class LoginForm extends Form {
     const { data } = this.state;
 
     try {
-      await login(data.username, data.password);
+      const { data: jwt } = await login(data.username, data.password);
       toast.success("User added sucessfuly!");
-      console.log("login done");
+      console.log(jwt);
+      // store the token
+      localStorage.setItem("token", jwt);
     } catch (error) {
       const errors = { ...this.state.errors };
       errors.username = error.response.data;
