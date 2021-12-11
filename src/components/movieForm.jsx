@@ -43,10 +43,7 @@ class MovieForm extends Form {
     if (movieId === "new") return;
 
     try {
-      console.log("movie id");
-      console.log(movieId);
       const { data: movie } = await getMovie(movieId);
-      console.log(movie);
       this.setState({ data: this.mapToViewModel(movie) });
     } catch (error) {
       if (error.response && error.response.status === 404) {
@@ -71,8 +68,6 @@ class MovieForm extends Form {
   }
 
   doSubmit = async () => {
-    console.log("added");
-
     try {
       await saveMovie(this.state.data);
       toast.success("Movie added sucessfuly!");
