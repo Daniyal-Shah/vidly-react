@@ -1,6 +1,6 @@
 import "./App.css";
 import Movies from "./components/movies";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, Redirect } from "react-router-dom";
 import Customers from "./components/customers";
 import Rentals from "./components/rentals";
 import NavBar from "./components/common/navBar";
@@ -21,11 +21,12 @@ class App extends React.Component {
     this.setState({ user });
   }
   render() {
+    const { user } = this.state;
     return (
       <div className="container">
         <div className="row mb-4 ">
           <ToastContainer />
-          <NavBar user={this.state.user} />
+          <NavBar user={user} />
         </div>
         <Routes>
           <Route path="/" element={<Navigate replace to="/movies" />} />
