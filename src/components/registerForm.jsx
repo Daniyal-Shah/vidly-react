@@ -22,8 +22,7 @@ class RegisterForm extends Form {
       localStorage.setItem("token", response.headers["x-auth-token"]);
 
       toast.success("User added sucessfuly!");
-
-      <Navigate replace to="/movies"></Navigate>;
+      window.location = "/";
     } catch (error) {
       const errors = { ...this.state.errors };
       errors.username = error.response.data;

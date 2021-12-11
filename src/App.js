@@ -27,8 +27,7 @@ class App extends React.Component {
       <div className="container">
         <div className="row mb-4 ">
           <ToastContainer />
-
-          <NavBar />
+          <NavBar user={this.state.user} />
         </div>
         <Routes>
           <Route path="/" element={<Navigate replace to="/movies" />} />

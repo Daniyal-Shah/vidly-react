@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const NavBar = (params) => {
+const NavBar = ({ user }) => {
   return (
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="">
@@ -44,22 +44,47 @@ const NavBar = (params) => {
           >
             Rentals
           </NavLink>
-          <NavLink
-            to="/login"
-            className={({ isActive }) =>
-              "nav-item nav-link" + (isActive ? " active" : "")
-            }
-          >
-            Login
-          </NavLink>
-          <NavLink
-            to="/register"
-            className={({ isActive }) =>
-              "nav-item nav-link" + (isActive ? " active" : "")
-            }
-          >
-            Register
-          </NavLink>
+          {!user && (
+            <React.Fragment>
+              <NavLink
+                to="/login"
+                className={({ isActive }) =>
+                  "nav-item nav-link" + (isActive ? " active" : "")
+                }
+              >
+                Login
+              </NavLink>
+              <NavLink
+                to="/register"
+                className={({ isActive }) =>
+                  "nav-item nav-link" + (isActive ? " active" : "")
+                }
+              >
+                Register
+              </NavLink>
+            </React.Fragment>
+          )}
+          {user && (
+            <React.Fragment>
+              <NavLink
+                to="/profile"
+                className={({ isActive }) =>
+                  "nav-item nav-link" + (isActive ? " active" : "")
+                }
+              >
+                {user.name}
+              </NavLink>
+              <NavLink
+                to="/logout"
+                className={({ isActive }) =>
+                  "nav-item nav-link text-sm text-white btn-sm btn-danger rounded-pill" +
+                  (isActive ? " active" : "")
+                }
+              >
+                Logout
+              </NavLink>
+            </React.Fragment>
+          )}
         </div>
       </div>
     </nav>

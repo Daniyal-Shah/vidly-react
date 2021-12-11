@@ -26,7 +26,7 @@ class LoginForm extends Form {
       console.log(jwt);
       // store the token
       localStorage.setItem("token", jwt);
-      <Navigate replace to="/movies"></Navigate>;
+      window.location = "/";
     } catch (error) {
       const errors = { ...this.state.errors };
       errors.username = error.response.data;
