@@ -43,14 +43,14 @@ class MovieForm extends Form {
     if (movieId === "new") return;
 
     try {
+      console.log("movie id");
+      console.log(movieId);
       const { data: movie } = await getMovie(movieId);
+      console.log(movie);
       this.setState({ data: this.mapToViewModel(movie) });
     } catch (error) {
       if (error.response && error.response.status === 404) {
         toast.error("Movie is not found");
-        // this.props.history.replace("/not-found");
-        console.log("Movie not found");
-        // Navigate("/not-found");
       }
     }
   };

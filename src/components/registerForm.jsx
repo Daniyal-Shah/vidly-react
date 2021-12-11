@@ -3,6 +3,7 @@ import Form from "./common/form";
 import Joi from "joi-browser";
 import * as userService from "../services/userService";
 import { toast } from "react-toastify";
+import { Navigate } from "react-router-dom";
 
 class RegisterForm extends Form {
   state = {
@@ -21,6 +22,8 @@ class RegisterForm extends Form {
       localStorage.setItem("token", response.headers["x-auth-token"]);
 
       toast.success("User added sucessfuly!");
+
+      <Navigate replace to="/movies"></Navigate>;
     } catch (error) {
       const errors = { ...this.state.errors };
       errors.username = error.response.data;

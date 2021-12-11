@@ -3,6 +3,7 @@ import Joi from "joi-browser";
 import Form from "./common/form";
 import { login } from "./../services/authService";
 import { toast } from "react-toastify";
+import { Navigate } from "react-router-dom";
 
 class LoginForm extends Form {
   state = {
@@ -25,6 +26,7 @@ class LoginForm extends Form {
       console.log(jwt);
       // store the token
       localStorage.setItem("token", jwt);
+      <Navigate replace to="/movies"></Navigate>;
     } catch (error) {
       const errors = { ...this.state.errors };
       errors.username = error.response.data;
