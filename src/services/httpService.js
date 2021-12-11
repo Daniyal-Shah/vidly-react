@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import auth from "./authService";
+// import auth from "./authService";
 import logger from "./logService";
 // import * as Sentry from "@sentry/react";
 
@@ -23,7 +23,7 @@ axios.interceptors.response.use(null, (error) => {
   return Promise.reject(error);
 });
 
-export function setJwt(jwt) {
+function setJwt(jwt) {
   axios.defaults.headers.common["x-auth-token"] = jwt;
 }
 
