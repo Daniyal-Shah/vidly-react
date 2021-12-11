@@ -1,9 +1,8 @@
 import React from "react";
 import Joi from "joi-browser";
 import Form from "./common/form";
-import { login } from "./../services/authService";
+import auth from "../services/authService";
 import { toast } from "react-toastify";
-import { Navigate } from "react-router-dom";
 
 class LoginForm extends Form {
   state = {
@@ -21,11 +20,8 @@ class LoginForm extends Form {
     const { data } = this.state;
 
     try {
-      const { data: jwt } = await login(data.username, data.password);
+      await auth.login(data.username, data.password);
       toast.success("User added sucessfuly!");
-      console.log(jwt);
-      // store the token
-      localStorage.setItem("token", jwt);
       window.location = "/";
     } catch (error) {
       const errors = { ...this.state.errors };

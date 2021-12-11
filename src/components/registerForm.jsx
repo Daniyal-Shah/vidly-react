@@ -4,6 +4,7 @@ import Joi from "joi-browser";
 import * as userService from "../services/userService";
 import { toast } from "react-toastify";
 import { Navigate } from "react-router-dom";
+import auth from "../services/authService";
 
 class RegisterForm extends Form {
   state = {
@@ -19,7 +20,7 @@ class RegisterForm extends Form {
   doSubmit = async () => {
     try {
       const response = await userService.register(this.state.data);
-      localStorage.setItem("token", response.headers["x-auth-token"]);
+      auth.loginWithJwt(response.headers["x-auth-token"]);
 
       toast.success("User added sucessfuly!");
       window.location = "/";
