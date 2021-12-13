@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import MovieList from "./MovieList";
+import Login from "./Login";
 
 class MoviePage extends Component {
   render() {
     return (
       <div>
-        Movie Page
         <MovieList />
+        <Login />
       </div>
     );
   }

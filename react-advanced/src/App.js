@@ -8,11 +8,23 @@ import MoviePage from "./context/MoviePage";
 import { UserContext } from "./context/userContext";
 
 class App extends Component {
-  state = { currentUser: { name: "daniyal" } };
+  state = { currentUser: { name: "" } };
+
+  handleLoggedIn = (username) => {
+    console.log("Getting the user", username);
+    const user = { name: username };
+    this.setState({ currentUser: user });
+  };
+
   render() {
     return (
       <div className="App">
-        <UserContext.Provider value={this.state.currentUser}>
+        <UserContext.Provider
+          value={{
+            currentUser: this.state.currentUser,
+            onLoggedIn: this.handleLoggedIn,
+          }}
+        >
           <MoviePage />
         </UserContext.Provider>
       </div>

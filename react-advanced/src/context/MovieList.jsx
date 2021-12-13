@@ -12,9 +12,9 @@ class MovieList extends Component {
     return (
       <Fragment>
         <UserContext.Consumer>
-          {(anything) => (
+          {(userContext) => (
             <div>
-              MovieList {anything.name} <MovieRow />{" "}
+              MovieList {userContext.currentUser.name} <MovieRow />{" "}
             </div>
           )}
         </UserContext.Consumer>
