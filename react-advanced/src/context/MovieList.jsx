@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import MovieRow from "./MovieRow";
 import { UserContext } from "./userContext";
 
 class MovieList extends Component {
@@ -11,7 +12,11 @@ class MovieList extends Component {
     return (
       <Fragment>
         <UserContext.Consumer>
-          {(anything) => <div>MovieList {anything.name}</div>}
+          {(anything) => (
+            <div>
+              MovieList {anything.name} <MovieRow />{" "}
+            </div>
+          )}
         </UserContext.Consumer>
       </Fragment>
     );
